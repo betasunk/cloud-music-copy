@@ -5,18 +5,18 @@ import HomeLayout from '../layouts/HomeLayout'
 
 const SuspenseComponent = (Component) => (props) => {
   return (
-    <Suspense>
+    <Suspense fallback={null}>
       <Component {...props}></Component>
     </Suspense>
   )
 }
 
-// const RecommendComponent = lazy(() => import('../application/Recommend'))
-// const SingersComponent = lazy(() => import('../application/Singers'))
-// const RankComponent = lazy(() => import('../application/Rank/'))
+const RecommendComponent = lazy(() => import('../application/Recommend'))
+const SingersComponent = lazy(() => import('../application/Singers'))
+const RankComponent = lazy(() => import('../application/Rank/'))
 // const AlbumComponent = lazy(() => import('../application/Album/'))
 // const SingerComponent = lazy(() => import('./../application/Singer/'))
-// const SearchComponent = lazy(() => import('./../application/Search/'))
+const SearchComponent = lazy(() => import('./../application/Search/'))
 
 export default [
   {
@@ -25,6 +25,24 @@ export default [
       {
         component: HomeLayout,
         path: '/',
+        routes: [
+          {
+            component: SuspenseComponent(SearchComponent),
+            path: '/search',
+          },
+          {
+            component: SuspenseComponent(RecommendComponent),
+            path: '/recommend',
+          },
+          {
+            component: SuspenseComponent(SingersComponent),
+            path: '/singers',
+          },
+          {
+            component: SuspenseComponent(RankComponent),
+            path: '/rank',
+          },
+        ],
       },
     ],
   },
