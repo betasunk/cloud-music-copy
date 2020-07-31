@@ -1,4 +1,4 @@
-import  axios  from 'axios'
+import axios from 'axios'
 
 export const baseUrl = 'http://localhost:3000'
 
@@ -8,9 +8,12 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.response.use(
-  (res) => res.data,
+  (res) => {
+    console.log(res.data, 'res')
+    return res.data
+  },
   (err) => {
     console.log(err, '网络错误')
   }
 )
-export {axiosInstance}
+export { axiosInstance }

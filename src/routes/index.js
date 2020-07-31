@@ -11,10 +11,10 @@ const SuspenseComponent = (Component) => (props) => {
   )
 }
 
-const RecommendComponent = lazy(() => import('../application/Recommend'))
-const SingersComponent = lazy(() => import('../application/Singers'))
+const RecommendComponent = lazy(() => import('../application/Recommend/'))
+const SingersComponent = lazy(() => import('../application/Singers/'))
 const RankComponent = lazy(() => import('../application/Rank/'))
-// const AlbumComponent = lazy(() => import('../application/Album/'))
+const AlbumComponent = lazy(() => import('../application/Album/'))
 // const SingerComponent = lazy(() => import('./../application/Singer/'))
 const SearchComponent = lazy(() => import('./../application/Search/'))
 
@@ -33,6 +33,12 @@ export default [
           {
             component: SuspenseComponent(RecommendComponent),
             path: '/recommend',
+            routes: [
+              {
+                path: "/recommend/2340621859",
+                component: SuspenseComponent(AlbumComponent)
+              }
+            ]
           },
           {
             component: SuspenseComponent(SingersComponent),
